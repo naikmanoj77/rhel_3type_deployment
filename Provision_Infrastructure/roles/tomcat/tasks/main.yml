@@ -1,0 +1,45 @@
+---
+# tasks file for roles/tomcat
+- name: installing the tomcat server
+  yum:
+    name: tomcat
+    state: latest
+
+- name: createing the ansible tomcat directory /usr/share/tomcat/webapps/ROOT
+  file:
+    path: /usr/share/tomcat/webapps/ROOT
+    state: directory
+
+- name: copying index.html to tomcat server at webapps/ansible/index.html
+  template:
+    src: index.html.app_srv1
+    dest: /usr/share/tomcat/webapps/ROOT/index.html
+    mode: 0644
+
+- block:
+  - name: creating the ansible tomcat directory as /usr/share/tomcat/webapps/ansible
+    file:
+        path: /usr/share/tomcat/webapps/ansible
+        state: directory
+  - name: copy index.html to tomcat server at webapps/ansible/index.html
+    template:
+        src: index.html.app_srv1
+        dest: /usr/share/tomcat/webapps/ansible/index.html
+  when: inventory_hostname == "app_srv1"
+
+- block:
+  - name: creating the ansible tomcat directory on app_srv2 server
+    file:
+        path: /usr/share/tomcat/webapps/ansible
+        state: directory
+  - name: copy the index.html to app_srv2 tomcat server at webapps/ansible/index.html
+    template:
+        src: index.html.app_srv2
+        dest: /usr/share/tomcat/webapps/ansible/index.html
+  when: inventory_hostname == "app_srv2"
+
+- name: Starting the tomcat server on both application server
+  service:
+    name: tomcat
+    state: started
+    enabled: yes

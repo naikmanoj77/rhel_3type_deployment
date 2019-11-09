@@ -1,0 +1,13 @@
+[workstation] # Workstation server
+workstation ansible_host=workstation.4a50 
+
+[application] #Defining application servers
+
+app_srv1 ansible_host=app1.fqdn
+app_srv2 ansible_host=app2.fqdn
+
+[appdbsrv]
+
+appdbsrv1 ansible_host=appdb1.fqdn
+
+

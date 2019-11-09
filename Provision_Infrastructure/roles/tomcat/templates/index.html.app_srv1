@@ -1,0 +1,5 @@
+<body>
+    <tr><td colspan=5 align=center bgcolor=#0099FF><font color=#FFFFFF><b>WELCOME TO RED HAT</b></font></td></tr>
+    <h1>Ansible has completed his task on application server 1 - Welcome to Tomcat server on app_srv1</h1>
+</body>
+</html>

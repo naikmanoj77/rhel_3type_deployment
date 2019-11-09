@@ -1,0 +1,16 @@
+---
+# tasks file for roles/apache  to install and test the apache services
+- name: install apache
+  yum:
+    name: httpd
+    state: latest
+
+- name: Create index file
+  copy:
+    content: "Welcome to Redhat Training apache server "
+    dest: /var/www/html/index.html
+    
+- name: enable apache at while rebooting
+  service:
+    name: httpd
+    enabled: yes

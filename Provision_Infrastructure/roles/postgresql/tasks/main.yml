@@ -1,0 +1,27 @@
+---
+# tasks file for roles/postgresql to install the postgrace server and configure
+- name: install postgres
+  yum:
+    name: postgresql-server
+    state: latest
+
+- name: Notifying user for postgres setup 
+  debug:
+    msg: "Checking the postgrace initilization is done else initialize the database"
+
+# test postgresql Initilization
+- name: Checking for database initialization Process
+  command: postgresql-check-db-dir  /var/lib/pgsql/data
+  register: check_db_output
+  changed_when: check_db_output == 1
+  ignore_errors: yes
+  
+- name: initializing the postgrace database
+  shell: postgresql-setup initdb
+  when: check_db_output.rc != 0
+
+- name: startng the  postgres database
+  service:
+    name: postgresql
+    enabled: yes
+    state: started

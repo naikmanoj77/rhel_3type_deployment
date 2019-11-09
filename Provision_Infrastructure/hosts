@@ -1,0 +1,13 @@
+[workstation] # Workstation server
+frontend ansible_host=ctrl.example.com
+
+[application] #Defining application servers
+
+app1 ansible_host=comp00.example.com
+app2 ansible_host=comp01.example.com
+
+[appdbsrv]
+
+appdb1 ansible_host=comp00.example.com
+
+
