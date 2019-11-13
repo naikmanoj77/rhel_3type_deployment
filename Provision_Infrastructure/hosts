@@ -1,13 +1,12 @@
 [workstation] # Workstation server
-frontend ansible_host=ctrl.example.com
+frontend ansible_host=frontend1.b231.example.opentlc.com
 
 [application] #Defining application servers
 
-app1 ansible_host=comp00.example.com
-app2 ansible_host=comp01.example.com
+app1 ansible_host=app1.b231.example.opentlc.com
+app2 ansible_host=app2.b231.example.opentlc.com
 
 [appdbsrv]
 
-appdb1 ansible_host=comp00.example.com
-
+appdb1 ansible_host=appdb1.b231.example.opentlc.com
 
